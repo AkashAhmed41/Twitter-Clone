@@ -13,8 +13,8 @@ export default function Auth() {
         <Image
           src={"/images/x.svg"}
           alt="X"
-          width={450}
-          height={450}
+          width={500}
+          height={480}
           className={styles.logo}
         />
 
