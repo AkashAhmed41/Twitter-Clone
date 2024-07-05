@@ -2,9 +2,17 @@ import Image from "next/image";
 import React from "react";
 
 import styles from "./auth.module.css";
-import Button from "../button/button";
+import Button from "../ui-components/button/button";
 import { FcGoogle } from "react-icons/fc";
 import { GrApple } from "react-icons/gr";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui-components/dialog/dialog";
 
 export default function Auth() {
   return (
@@ -68,6 +76,18 @@ export default function Auth() {
             <h3>Already have an account?</h3>
             <div className={styles.buttons}>
               <Button label={"Sign in"} fullWidth={true} outline={true} />
+              <Dialog>
+                <DialogTrigger>Open</DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Are you absolutely sure?</DialogTitle>
+                    <DialogDescription>
+                      This action cannot be undone. This will permanently delete
+                      your account and remove your data from our servers.
+                    </DialogDescription>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>
