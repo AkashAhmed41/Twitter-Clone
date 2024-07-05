@@ -15,10 +15,13 @@ export default function Auth() {
           alt="X"
           width={500}
           height={480}
-          className={styles.logo}
+          className={styles["app-logo"]}
         />
 
-        <div className={styles.rightSide}>
+        <div className={styles["right-side"]}>
+          <div className={styles["small-logo"]}>
+            <Image src={"/images/x.svg"} alt="X" width={60} height={60} />
+          </div>
           <h1 className={styles.header}>Happening now</h1>
           <div className={styles.signup}>
             <h2>Join today.</h2>
@@ -51,6 +54,14 @@ export default function Auth() {
                 <div className={styles.line} />
               </div>
               <Button label={"Create account"} fullWidth={true} />
+              <div className={styles["small-text"]}>
+                By signing up, you agree to the{" "}
+                <span className={styles["link-text"]}>Terms of Service</span>{" "}
+                and
+                <span className={styles["link-text"]}> Privacy Policy</span>,
+                including
+                <span className={styles["link-text"]}> Cookie Use</span>.
+              </div>
             </div>
           </div>
           <div className={styles.signin}>
