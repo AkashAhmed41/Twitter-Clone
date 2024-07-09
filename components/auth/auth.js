@@ -1,22 +1,25 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useCallback } from "react";
 
 import styles from "./auth.module.css";
 import Button from "../ui-components/button/button";
 import { FcGoogle } from "react-icons/fc";
 import { GrApple } from "react-icons/gr";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../ui-components/dialog/dialog";
+import useRegisterModal from "@/hooks/useRegisterModal";
+import RegisterModal from "../modals/register-modal/registerModal";
 
 export default function Auth() {
+  const registerModal = useRegisterModal();
+
+  const onOpenRegisterModal = useCallback(() => {
+    registerModal.onOpen();
+  }, [registerModal]);
+
   return (
     <>
+      <RegisterModal />
       <div className={styles.container}>
         <Image
           src={"/images/x.svg"}
@@ -61,7 +64,11 @@ export default function Auth() {
                 <p className={styles.text}>or</p>
                 <div className={styles.line} />
               </div>
-              <Button label={"Create account"} fullWidth={true} />
+              <Button
+                label={"Create account"}
+                fullWidth={true}
+                onclick={onOpenRegisterModal}
+              />
               <div className={styles["small-text"]}>
                 By signing up, you agree to the{" "}
                 <span className={styles["link-text"]}>Terms of Service</span>{" "}
@@ -76,18 +83,6 @@ export default function Auth() {
             <h3>Already have an account?</h3>
             <div className={styles.buttons}>
               <Button label={"Sign in"} fullWidth={true} outline={true} />
-              <Dialog>
-                <DialogTrigger>Open</DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Are you absolutely sure?</DialogTitle>
-                    <DialogDescription>
-                      This action cannot be undone. This will permanently delete
-                      your account and remove your data from our servers.
-                    </DialogDescription>
-                  </DialogHeader>
-                </DialogContent>
-              </Dialog>
             </div>
           </div>
         </div>

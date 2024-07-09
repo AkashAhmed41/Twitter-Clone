@@ -1,0 +1,129 @@
+.dialogOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.dialogContent {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 50;
+  width: 100%;
+  max-width: 600px;
+  transform: translate(-50%, -50%);
+  display: grid;
+  gap: 16px;
+  border-radius: 10px;
+  background-color: black;
+  padding: 0.25rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+}
+
+/* .dialogContent[data-state="open"] {
+  animation: fadeIn 0.2s ease-in, zoomIn 0.2s ease-in;
+}
+
+.dialogContent[data-state="closed"] {
+  animation: fadeOut 0.2s ease-out, zoomOut 0.2s ease-out;
+} */
+
+/* @keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+} */
+
+/* @keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+} */
+
+/* @keyframes zoomIn {
+  from {
+    transform: scale(0.95);
+  }
+  to {
+    transform: scale(1);
+  }
+} */
+
+/* @keyframes zoomOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.95);
+  }
+} */
+
+.dialogClose {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.dialogClose:hover {
+  opacity: 1;
+}
+
+.crossIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.dialogHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+}
+
+.dialogFooter {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 16px;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.dialogFooter > *:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.dialogTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.dialogDescription {
+  font-size: 0.875rem;
+  color: #666;
+}

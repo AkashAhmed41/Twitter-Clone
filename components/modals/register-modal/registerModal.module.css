@@ -1,0 +1,17 @@
+.bodyContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cancelButton {
+  border: none;
+  color: white;
+  width: fit-content;
+  transition: all 0.2s;
+  background: none;
+}
+
+.cancelButton:hover {
+  opacity: 0.7;
+}
