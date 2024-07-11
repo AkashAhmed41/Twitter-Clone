@@ -1,0 +1,19 @@
+.space-y-2 > * + * {
+  margin-top: 0.5rem;
+}
+
+.text-destructive {
+  color: #ef4444; /* Example color for destructive text */
+}
+
+.text-muted-foreground {
+  color: #6b7280; /* Example color for muted text */
+}
+
+.text-small {
+  font-size: 0.8rem;
+}
+
+.font-medium {
+  font-weight: 500;
+}

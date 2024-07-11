@@ -1,3 +1,21 @@
+.modalHeader {
+  display: flex;
+  align-items: center;
+  gap: 40%;
+}
+
 .seperator {
   margin-top: 1rem;
+}
+
+.cancelButton {
+  border: none;
+  color: white;
+  width: fit-content;
+  transition: all 0.2s;
+  background: none;
+}
+
+.cancelButton:hover {
+  opacity: 0.7;
 }

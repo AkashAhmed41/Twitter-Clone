@@ -1,20 +1,21 @@
 import Modal from "@/components/ui-components/modal/modal";
 import useRegisterModal from "@/hooks/useRegisterModal";
-import React from "react";
-import { X } from "lucide-react";
+import React, { useState } from "react";
 
 import styles from "./registerModal.module.css";
 
 export default function RegisterModal() {
+  const [step, setStep] = useState(1);
   const registerModal = useRegisterModal();
 
-  const bodyContent = (
-    <div className={styles.bodyContent}>
-      <button className={styles.cancelButton} onClick={registerModal.onClose}>
-        <X size={28} />
-      </button>
-    </div>
-  );
+  const bodyContent =
+    step === 1 ? (
+      <RegisterStep1 />
+    ) : step === 2 ? (
+      <RegisterStep2 />
+    ) : (
+      <RegisterStep3 />
+    );
 
   const footer = <div>footer content</div>;
 
@@ -26,4 +27,16 @@ export default function RegisterModal() {
       onClose={registerModal.onClose}
     />
   );
+}
+
+function RegisterStep1() {
+  return <div>Register step 1</div>;
+}
+
+function RegisterStep2() {
+  return <div>Register step 2</div>;
+}
+
+function RegisterStep3() {
+  return <div>Register step 3</div>;
 }
