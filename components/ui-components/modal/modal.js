@@ -15,8 +15,8 @@ export default function Modal({ body, footer, isOpen, onClose }) {
           </button>
           <Image src={"/images/x.svg"} alt="X" width={45} height={45} />
         </div>
-        <div className={styles.seperator}>{body}</div>
-        {footer && <div className={styles.seperator}>{footer}</div>}
+        <div className={styles.mainContent}>{body}</div>
+        {footer && <div>{footer}</div>}
       </DialogContent>
     </Dialog>
   );

@@ -2,10 +2,12 @@
   display: flex;
   align-items: center;
   gap: 40%;
+  margin-bottom: 1rem;
 }
 
-.seperator {
-  margin-top: 1rem;
+.mainContent {
+  margin-bottom: 1rem;
+  /* padding: 0 80px; */
 }
 
 .cancelButton {
