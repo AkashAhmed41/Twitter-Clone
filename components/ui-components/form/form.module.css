@@ -1,13 +1,13 @@
-.space-y-2 > * + * {
+.space {
   margin-top: 0.5rem;
 }
 
 .text-destructive {
-  color: #ef4444; /* Example color for destructive text */
+  color: #ef4444;
 }
 
-.text-muted-foreground {
-  color: #6b7280; /* Example color for muted text */
+.muted-text {
+  color: #6b7280;
 }
 
 .text-small {

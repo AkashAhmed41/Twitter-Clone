@@ -52,7 +52,7 @@ export default function Auth() {
                 label={
                   <div className={styles.label}>
                     <GrApple />
-                    Sign up with Google
+                    Sign up with Apple
                   </div>
                 }
                 fullWidth={true}

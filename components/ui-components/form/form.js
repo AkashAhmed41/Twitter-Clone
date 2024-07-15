@@ -50,7 +50,7 @@ const FormItem = React.forwardRef((props, ref) => {
     <FormItemContext.Provider value={{ id }}>
       <div
         ref={ref}
-        className={`${styles["space-y-2"]} ${props.className}`}
+        className={`${styles.space} ${props.className}`}
         {...props}
       />
     </FormItemContext.Provider>
@@ -99,7 +99,7 @@ const FormDescription = React.forwardRef((props, ref) => {
     <p
       ref={ref}
       id={formDescriptionId}
-      className={`${styles["text-small"]} ${styles["text-muted-foreground"]} ${props.className}`}
+      className={`${styles["text-small"]} ${styles["muted-text"]} ${props.className}`}
       {...props}
     />
   );

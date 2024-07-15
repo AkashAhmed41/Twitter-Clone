@@ -1,4 +1,5 @@
 import React from "react";
+
 import styles from "./input.module.css";
 
 const Input = React.forwardRef(({ className, type, ...props }, ref) => {
