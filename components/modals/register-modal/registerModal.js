@@ -13,21 +13,30 @@ import {
 import { Input } from "@/components/ui-components/input/input";
 import Button from "@/components/ui-components/button/button";
 import useRegisterModal from "@/hooks/useRegisterModal";
-import { registerFirstStepSchema } from "@/lib/validation";
+import {
+  registerFirstStepSchema,
+  registerSecondStepSchema,
+  registerThirdStepSchema,
+} from "@/lib/validation";
 
 import styles from "./registerModal.module.css";
 
 export default function RegisterModal() {
   const [step, setStep] = useState(1);
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    dateOfBirth: { month: "", day: "", year: "" },
+  });
   const registerModal = useRegisterModal();
 
   const bodyContent =
     step === 1 ? (
-      <RegisterFirstStep />
+      <RegisterFirstStep setData={setData} setStep={setStep} />
     ) : step === 2 ? (
-      <RegisterSecondStep />
+      <RegisterSecondStep data={data} setStep={setStep} />
     ) : (
-      <RegisterThirdStep />
+      <RegisterThirdStep data={data} />
     );
 
   return (
@@ -39,7 +48,7 @@ export default function RegisterModal() {
   );
 }
 
-function RegisterFirstStep() {
+function RegisterFirstStep({ setData, setStep }) {
   const form = useForm({
     resolver: zodResolver(registerFirstStepSchema),
     defaultValues: {
@@ -95,7 +104,17 @@ function RegisterFirstStep() {
   console.log({ selectedMonth, selectedDay, selectedYear });
 
   function onSubmit(values) {
-    console.log(values);
+    const formData = {
+      ...values,
+      dateOfBirth: {
+        month: form.getValues("dateOfBirth.month"),
+        day: form.getValues("dateOfBirth.day"),
+        year: form.getValues("dateOfBirth.year"),
+      },
+    };
+    console.log(formData);
+    setData(formData);
+    setStep(2);
   }
 
   const { isSubmitting } = form.formState;
@@ -130,7 +149,7 @@ function RegisterFirstStep() {
         />
         <div>
           <div className={styles.dobHeader}>Date of birth</div>
-          <div className={styles.dobMessage}>
+          <div className={styles.message}>
             This will not be shown publicly. Confirm your own age, even if this
             account is for a business, a pet, or something else.
           </div>
@@ -192,10 +211,117 @@ function RegisterFirstStep() {
   );
 }
 
-function RegisterSecondStep() {
-  return <div>Register step 2</div>;
+function RegisterSecondStep({ data, setStep }) {
+  const form = useForm({
+    resolver: zodResolver(registerSecondStepSchema),
+    defaultValues: {
+      verificationCode: "",
+    },
+  });
+
+  function onSubmit(values) {
+    console.log(values);
+    setStep(3);
+  }
+
+  const { isSubmitting } = form.formState;
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className={styles.form}>
+        <div style={{ marginBottom: "240px" }}>
+          <div style={{ marginBottom: "10px" }}>
+            <div className={styles.header}>We sent you a code</div>
+            <div className={styles.message}>
+              {`Enter it below to verify ${data.email}.`}
+            </div>
+          </div>
+          <FormField
+            control={form.control}
+            name="verificationCode"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="Verification code" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <span className={styles["link-text"]}>Didn't receive email?</span>
+        </div>
+        <Button
+          label={"Next"}
+          type="submit"
+          secondary={true}
+          large={true}
+          fullWidth={true}
+          disabled={isSubmitting}
+        />
+      </form>
+    </Form>
+  );
 }
 
-function RegisterThirdStep() {
-  return <div>Register step 3</div>;
+function RegisterThirdStep({ data }) {
+  const form = useForm({
+    resolver: zodResolver(registerThirdStepSchema),
+    defaultValues: {
+      password: "",
+    },
+  });
+
+  function onSubmit(values) {
+    console.log(values);
+  }
+
+  const { isSubmitting } = form.formState;
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className={styles.form}>
+        <div style={{ marginBottom: "120px" }}>
+          <div style={{ marginBottom: "10px" }}>
+            <div className={styles.header}>You'll need a password</div>
+            <div className={styles.message}>
+              Make sure it’s 8 characters or more.
+            </div>
+          </div>
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="Password" type="password" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className={styles["small-text"]}>
+          By signing up, you agree to the{" "}
+          <span className={styles["link-text"]}>Terms of Service</span> and
+          <span className={styles["link-text"]}>Privacy Policy</span>, including
+          <span className={styles["link-text"]}>Cookie Use</span>. X may use
+          your contact information, including your email address and phone
+          number for purposes outlined in our Privacy Policy, like keeping your
+          account secure and personalizing our services, including ads.{" "}
+          <span className={styles["link-text"]}>Learn more</span>. Others will
+          be able to find you by email or phone number, when provided, unless
+          you choose otherwise <span className={styles["link-text"]}>here</span>
+          .
+        </div>
+        <Button
+          label={"Sign Up"}
+          type="submit"
+          secondary={true}
+          large={true}
+          fullWidth={true}
+          disabled={isSubmitting}
+        />
+      </form>
+    </Form>
+  );
 }
